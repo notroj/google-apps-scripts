@@ -47,15 +47,15 @@ function testRemindWeekStatusViaEmailMain() {
  */
 function remindWeekStatusViaEmailMain() {
   Logger.log('remindWeekStatusViaEmailMain() start');
-  
+
   // data used from scriptDataObject
   var form_url = scriptDataObject['STATUS_FORM_URL'];
   var team_emails = scriptDataObject['TEAM_EMAILS'];
   var form = FormApp.openByUrl(form_url);
-  
+
   Logger.log('Using Form: %s', form_url);
   Logger.log('Using Emails: %s', team_emails);
-  
+
   var to_remind_emails = getMissingResponseEmails_(form_url, team_emails);  
   Logger.log('Followig people need to be reminded: %s', to_remind_emails);
 
@@ -71,9 +71,9 @@ function remindWeekStatusViaEmailMain() {
   Logger.log('Sending emails to: %s', to_remind_emails);
   Logger.log('Email SUBJ: %s', email_subject);
   Logger.log('Email BODY: %s', email_body);
-  
+
   MailApp.sendEmail(to_remind_emails.join(','), email_subject, email_body);
-  
+
   Logger.log('remindWeekStatusViaEmailMain() end');
 }
 
@@ -99,11 +99,11 @@ function testNotifyWeekStatusViaEmailMain() {
  */
 function notifyWeekStatusViaEmailMain() {
   Logger.log('notifyWeekStatusViaEmailMain() start');
-  
+
   var team_emails = scriptDataObject['TEAM_EMAILS'];
   var form_url = scriptDataObject['STATUS_FORM_URL'];
   var form = FormApp.openByUrl(form_url);
-  
+
   Logger.log('Using Form: %s', form_url);
   Logger.log('Using Emails: %s', team_emails);
 
@@ -126,13 +126,13 @@ function notifyWeekStatusViaEmailMain() {
 
   // Skip notification for emails that already provided status
   var missing_response_emails = getMissingResponseEmails_(form_url, team_emails);  
-  
+
   Logger.log('Sending emails to: %s', missing_response_emails);
   Logger.log('Email SUBJ: %s', email_subject);
   Logger.log('Email BODY: %s', email_body);
-  
+
   MailApp.sendEmail(missing_response_emails.join(','), email_subject, email_body);
-  
+
   Logger.log('notifyWeekStatusViaEmailMain() end');
 }
 
@@ -161,13 +161,13 @@ function testCreateNewWeeksStatusFormMain() {
  */
 function createNewWeeksStatusFormMain() {
   Logger.log('createNewWeeksStatusFormMain() start');
-  
+
   var form_url = scriptDataObject['STATUS_FORM_URL'];
   var spreadsheet_url = scriptDataObject['STATUS_SPREADSHEET_URL'];
   var form_title = scriptDataObject['FORM_TITLE'];
   var form_description = scriptDataObject['FORM_DESCRIPTION'];
   var form_sections = scriptDataObject['FORM_SECTIONS'];
-  
+
   Logger.log('Using Form: %s', form_url);
   Logger.log('Using Spreadsheet: %s', spreadsheet_url);
 
@@ -182,12 +182,12 @@ function createNewWeeksStatusFormMain() {
  */
 function recreateForm_(form_url, destination_sheet_url, title, description, sections) {
   Logger.log('recreateForm_() start');
-  
+
   // open the given form
   var form = FormApp.openByUrl(form_url);
   // open the destination spreadsheet
   var destination_sheet = SpreadsheetApp.openByUrl(destination_sheet_url)
-  
+
   // unlink form from its current destination
   form.removeDestination();
   // delete all responses after the change of destination spreadsheet.
@@ -195,16 +195,16 @@ function recreateForm_(form_url, destination_sheet_url, title, description, sect
   form.deleteAllResponses();
   // remove all items in the current form first!
   cleanForm_(form);
-  
+
   // set form properties
   form.setTitle(title);
   form.setDescription(description);
   form.setLimitOneResponsePerUser(true);
   form.setAllowResponseEdits(true);
   form.setCollectEmail(true);
-  
+
   /***** FORM'S CONTENT CREATION START *****/
-  
+
   // Time spent section
   var time_spent_section_data = sections['TIME_SPENT_SECTION'];
   if (time_spent_section_data !== undefined) {
@@ -227,7 +227,7 @@ function recreateForm_(form_url, destination_sheet_url, title, description, sect
         '100%',
     ]);
   }
-  
+
   // Text sections
   var text_sections_data = sections['TEXT_SECTIONS'];
   if (text_sections_data !== undefined) {
@@ -239,7 +239,7 @@ function recreateForm_(form_url, destination_sheet_url, title, description, sect
         .setValidation(section['VALIDATION'] || null); 
     }
   }  
-  
+
   /***** FORM'S CONTENT CREATION END *****/
 
   // Set form's destination spreadsheet. This ensures that new sheet within the spreadsheet is created.
@@ -250,6 +250,6 @@ function recreateForm_(form_url, destination_sheet_url, title, description, sect
 
   Logger.log('Published URL: ' + form.getPublishedUrl());
   Logger.log('Editor URL: ' + form.getEditUrl());
-  
+
   Logger.log('recreateForm_() end');
 }
