@@ -1,0 +1,11 @@
+# ignore all files
+**/**
+
+# Ignore example project data
+projectDataExample.js
+
+# Project files
+!projectData.js
+!weeklyStatusReports.js
+!utils.js
+!appsscript.json
