@@ -28,6 +28,21 @@
  */
 
 /**
+ * Runs remindWeekStatusViaEmailMain() with testing data
+ */
+function testRemindWeekStatusViaEmailMain() {
+  Logger.log('testRemindWeekStatusViaEmailMain() start');
+
+  scriptDataObject['STATUS_SPREADSHEET_URL'] = scriptDataObject['TEST_STATUS_SPREADSHEET_URL'];
+  scriptDataObject['STATUS_FORM_URL'] = scriptDataObject['TEST_STATUS_FORM_URL'];
+  scriptDataObject['TEAM_EMAILS'] = scriptDataObject['TEST_TEAM_EMAILS'];
+
+  remindWeekStatusViaEmailMain();
+
+  Logger.log('testRemindWeekStatusViaEmailMain() end');
+}
+
+/**
  * Function to remind people to submit status, if they didn't do so yet.
  */
 function remindWeekStatusViaEmailMain() {
@@ -63,6 +78,21 @@ function remindWeekStatusViaEmailMain() {
 }
 
 /********************************************************************************/
+
+/**
+ * Runs notifyWeekStatusViaEmailMain() with testing data
+ */
+function testNotifyWeekStatusViaEmailMain() {
+  Logger.log('testNotifyWeekStatusViaEmailMain() start');
+
+  scriptDataObject['STATUS_SPREADSHEET_URL'] = scriptDataObject['TEST_STATUS_SPREADSHEET_URL'];
+  scriptDataObject['STATUS_FORM_URL'] = scriptDataObject['TEST_STATUS_FORM_URL'];
+  scriptDataObject['TEAM_EMAILS'] = scriptDataObject['TEST_TEAM_EMAILS'];
+
+  notifyWeekStatusViaEmailMain();
+
+  Logger.log('testNotifyWeekStatusViaEmailMain() end');
+}
 
 /**
  * Main logic for requesting new week's status from team via email.
@@ -107,6 +137,21 @@ function notifyWeekStatusViaEmailMain() {
 }
 
 /********************************************************************************/
+
+/**
+ * Runs createNewWeeksStatusFormMain() with testing data
+ */
+function testCreateNewWeeksStatusFormMain() {
+  Logger.log('testCreateNewWeeksStatusFormMain() start');
+
+  scriptDataObject['STATUS_SPREADSHEET_URL'] = scriptDataObject['TEST_STATUS_SPREADSHEET_URL'];
+  scriptDataObject['STATUS_FORM_URL'] = scriptDataObject['TEST_STATUS_FORM_URL'];
+  scriptDataObject['TEAM_EMAILS'] = scriptDataObject['TEST_TEAM_EMAILS'];
+
+  createNewWeeksStatusFormMain();
+
+  Logger.log('testCreateNewWeeksStatusFormMain() end');
+}
 
 /**
  * Main logic for creating new week's status form and sheet.

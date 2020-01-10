@@ -35,6 +35,10 @@ var scriptDataObject = {
   'STATUS_FORM_URL': '<URL>',
   'TEAM_EMAILS': ['member1@example.com', 'member2@example.com'],
 
+  'TEST_STATUS_SPREADSHEET_URL': '<URL>',
+  'TEST_STATUS_FORM_URL': '<URL>',
+  'TEST_TEAM_EMAILS': ['test@example.com'],
+
   'FORM_TITLE': Utilities.formatString('Status for week #%s-%s', getWeekNumber_(), new Date().getYear()),
   'FORM_DESCRIPTION': 'Please provide status report for the current week. Include any links to pull requests ' +
                  '/ bugs / documents / blogs / etc., that may be relevant. Keep it short and focus on things ' +
